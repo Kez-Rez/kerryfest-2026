@@ -20,7 +20,7 @@ const FAKE_BUYERS = [
     'Jane Austin',
     'Andy Weir',
     'Richard Wagner',
-    'John Cage',
+    'Ole Kirk Christiansen',
     'Natalie Holt',
     'Holden Caulfield',
     'Huckleberry Finn',
@@ -265,7 +265,7 @@ function generateTicket(data) {
     buttonGroup.className = 'button-group';
     buttonGroup.innerHTML = `
         <button onclick="window.print()" class="action-btn print-btn">🖨️ PRINT TICKETS</button>
-        
+        <button onclick="downloadTicket()" class="action-btn download-btn">💾 DOWNLOAD</button>
         <button onclick="addToCalendar()" class="action-btn calendar-btn">📅 ADD TO CALENDAR</button>
     `;
     ticketContainer.appendChild(buttonGroup);
