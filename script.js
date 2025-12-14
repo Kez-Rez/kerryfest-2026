@@ -38,6 +38,7 @@ const FAKE_BUYERS = [
     'Bobby Fischer',
     'Yuri Gagarin',
     'Valentina Tereshkova',
+    'Chloé Zhao',
     'Laika'
 ];
 
