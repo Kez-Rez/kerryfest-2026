@@ -293,7 +293,7 @@ function createTicketElement(data, index, total, numberOfGuests) {
     const isMainTicket = index === 0;
     const ticketName = isMainTicket ? data.fullName.toUpperCase() : `GUEST OF ${data.fullName.toUpperCase()}`;
     const barcodeId = `barcode-${index}`;
-    const partySizeText = total === 1 ? '1 Person' : `${total} People (${numberOfGuests} ${numberOfGuests === 1 ? 'Guest' : 'Guests'})`;
+    const partySizeText = total === 1 ? '1 Person' : `${total} People`;
 
     ticketDiv.innerHTML = `
         <div class="ticket-header">
@@ -383,27 +383,35 @@ async function downloadTicket() {
             console.log('Ticket dimensions:', ticket.offsetWidth, 'x', ticket.offsetHeight);
 
             const canvas = await html2canvas(ticket, {
-                scale: 2,
+                scale: 3,
                 backgroundColor: '#ffffff',
                 useCORS: true,
                 allowTaint: false,
                 logging: false,
-                width: ticket.offsetWidth,
-                height: ticket.offsetHeight,
-                windowWidth: ticket.offsetWidth,
-                windowHeight: ticket.offsetHeight,
+                scrollX: 0,
+                scrollY: 0,
+                x: 0,
+                y: 0,
                 onclone: function(clonedDoc) {
-                    // Ensure the cloned ticket is visible and styled with fixed dimensions
-                    const clonedTicket = clonedDoc.querySelector('.ticket');
+                    // Ensure the cloned ticket is visible and properly styled
+                    const clonedTicket = clonedDoc.getElementById(ticket.id);
                     if (clonedTicket) {
                         clonedTicket.style.display = 'flex';
                         clonedTicket.style.flexDirection = 'column';
                         clonedTicket.style.visibility = 'visible';
                         clonedTicket.style.position = 'relative';
-                        clonedTicket.style.width = ticket.offsetWidth + 'px';
-                        clonedTicket.style.height = ticket.offsetHeight + 'px';
                         clonedTicket.style.opacity = '1';
                         clonedTicket.style.backgroundColor = '#ffffff';
+                        clonedTicket.style.margin = '0';
+                        clonedTicket.style.padding = '0';
+                        clonedTicket.style.boxSizing = 'border-box';
+                        clonedTicket.style.overflow = 'visible';
+
+                        // Ensure all images are loaded
+                        const imgs = clonedTicket.querySelectorAll('img');
+                        imgs.forEach(img => {
+                            img.style.display = 'block';
+                        });
                     }
                 }
             });
