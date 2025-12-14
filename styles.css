@@ -676,6 +676,10 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
     .countdown-timer {
         top: 10px;
         right: 10px;
@@ -703,10 +707,41 @@ body {
 
     .event-info h1 {
         font-size: 1.8em;
+        line-height: 1.2;
     }
 
     .ticket-form {
         padding: 20px;
+    }
+
+    .ticket-form h2 {
+        font-size: 1.5em;
+    }
+
+    /* Make form inputs more thumb-friendly */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 14px;
+        min-height: 48px; /* Recommended touch target size */
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+    }
+
+    .form-group label {
+        font-size: 0.95em;
+        margin-bottom: 8px;
+    }
+
+    /* Make submit button thumb-friendly */
+    .submit-btn {
+        font-size: 1em;
+        padding: 16px 32px;
+        min-height: 56px; /* Larger touch target */
+        margin-top: 10px;
     }
 
     .ticket-container {
@@ -735,12 +770,29 @@ body {
         font-size: 0.85em;
     }
 
+    /* Make action buttons thumb-friendly and stack vertically */
     .button-group {
         flex-direction: column;
         width: 100%;
+        gap: 12px;
     }
 
     .action-btn {
         width: 100%;
+        font-size: 1em;
+        padding: 16px 24px;
+        min-height: 56px; /* Larger touch target */
+    }
+
+    .success-message {
+        padding: 20px;
+    }
+
+    .success-message h3 {
+        font-size: 1.5em;
+    }
+
+    .success-message p {
+        font-size: 1em;
     }
 }
