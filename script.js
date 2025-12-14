@@ -382,16 +382,22 @@ async function downloadTicket() {
             console.log('Generating image for ticket', i + 1);
             console.log('Ticket dimensions:', ticket.offsetWidth, 'x', ticket.offsetHeight);
 
+            // Get scroll position to ensure proper capture
+            const scrollX = window.scrollX || window.pageXOffset;
+            const scrollY = window.scrollY || window.pageYOffset;
+
             const canvas = await html2canvas(ticket, {
                 scale: 3,
                 backgroundColor: '#ffffff',
                 useCORS: true,
                 allowTaint: false,
                 logging: false,
-                scrollX: 0,
-                scrollY: 0,
-                x: 0,
-                y: 0,
+                scrollX: -scrollX,
+                scrollY: -scrollY,
+                width: ticket.offsetWidth,
+                height: ticket.offsetHeight,
+                windowWidth: ticket.offsetWidth,
+                windowHeight: ticket.offsetHeight,
                 onclone: function(clonedDoc) {
                     // Ensure the cloned ticket is visible and properly styled
                     const clonedTicket = clonedDoc.getElementById(ticket.id);
@@ -406,6 +412,8 @@ async function downloadTicket() {
                         clonedTicket.style.padding = '0';
                         clonedTicket.style.boxSizing = 'border-box';
                         clonedTicket.style.overflow = 'visible';
+                        clonedTicket.style.width = ticket.offsetWidth + 'px';
+                        clonedTicket.style.height = ticket.offsetHeight + 'px';
 
                         // Ensure all images are loaded
                         const imgs = clonedTicket.querySelectorAll('img');
