@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>KERRYTIX - Get Your KerryFest Ticket!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Countdown Timer -->
+    <div id="countdownTimer" class="countdown-timer">
+        <div class="timer-label">TICKETS CLOSE IN</div>
+        <div class="timer-display">
+            <span id="minutes">15</span>:<span id="seconds">00</span>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <div class="container">
+        <!-- Booking Page -->
+        <div id="bookingPage" class="page active">
+            <div class="header">
+                <img src="KERRYTIX.png" alt="KERRYTIX" class="logo">
+            </div>
+
+            <div class="event-info">
+                <h1>THE 40th ANNUAL<br>FESTIVAL OF KERRY</h1>
+
+                <div class="event-details">
+                    <p class="date">📅 DATE: Saturday February 14</p>
+                    <p class="time">🕐 TIME: Anytime between 1pm-8pm</p>
+                    <p class="venue">📍 VENUE: The Clubhouse Moorooka</p>
+                </div>
+                <div class="event-description-area">
+                    <p>There have been many great KerryFests over the years from boat rides, to craft-a-noons, at fancy cocktail bars, squished into karaoke rooms, or in backyards dancing amongst a sea of balloons, and one thing is for sure, they are always a great time!</p>
+                    <p>This year I will be hosting my birthday in The Koala Room at The Moorooka Club house from 1pm-8pm (the entirety of their opening hours, but come along anytime during that time for as long as you like). Beyond the pinball (which is already there just outside the function room), there will be lawn bowls, crafts, room to generally mingle and even some tables to play board games at if you feel inclined.</p>
+                    <p>There will even be some (definitely optional) mini social games — I don't know what they are yet, but you can choose your house below and hopefully I'll come up with something before Valentine's!</p>
+                    <p>Wear whatever you feel your best in; whether it's something that makes you feel fancy, something that makes you stand out, or something that you picked up off your bedroom floor.</p>
+                    <p>Tickets are limited in the same sense that my love for karaoke is, so feel more than free to bring that good friend who makes the events you go to even better.</p>
+                    <p>For crafts, I'll get some basic stations set up, but you can bring what you are currently working on. See some recommendations <a href="craft-ideas.html" target="_blank">here</a>.</p>
+                </div>
+            </div>
+
+            <div class="ticket-form">
+                <h2>GET YOUR TICKET NOW</h2>
+                <p class="subtitle">Fill in your details to reserve your spot!</p>
+
+                <form id="ticketForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="team">Choose Your House *</label>
+                        <p class="field-helper"><em>Will I ever come up with a reason to have houses? Maybe not, but you better overthink your choice anyway!</em></p>
+                        <select id="team" name="team" required>
+                            <option value="">-- Select a house --</option>
+                            <option value="Curious Quolls">🐾 Curious Quolls</option>
+                            <option value="Ecstatic Echidnas">🦔 Ecstatic Echidnas</option>
+                            <option value="Pondering Potoroos">🦘 Pondering Potoroos</option>
+                            <option value="Unflappable Numbats">🐿️ Unflappable Numbats</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Number of Additional Guests *</label>
+                        <p class="field-helper"><em>know someone who you love to bring along to things? bring them along to this!</em></p>
+                        <select id="guests" name="guests" required>
+                            <option value="0">0 (Just me)</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietaryReqs">Notes</label>
+                        <p class="field-helper"><em>got an idea for a mini game or want to check on who else is attending? (the timer is real though)</em></p>
+                        <textarea id="dietaryReqs" name="dietaryReqs" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">GET MY TICKET</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Ticket Page -->
+        <div id="ticketPage" class="page">
+            <div class="ticket-container">
+                <!-- Tickets will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

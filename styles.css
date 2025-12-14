@@ -1,0 +1,746 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
+    50% { box-shadow: 0 8px 35px rgba(102, 126, 234, 0.5); }
+}
+
+.timer-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #667eea;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.timer-display {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.timer-display.warning {
+    color: #ff6b6b;
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Notification Popups */
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+.ticket-notification {
+    background: white;
+    padding: 15px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideInLeft 0.5s ease-out, fadeOut 0.5s ease-in 4.5s;
+    border-left: 4px solid #4CAF50;
+    min-width: 250px;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-name {
+    font-weight: 700;
+    color: #333;
+    font-size: 1em;
+    margin-bottom: 3px;
+}
+
+.notification-text {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.notification-icon {
+    color: #4CAF50;
+    font-size: 1.5em;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+/* Event Info */
+.event-info {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.event-info h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.subtitle-name {
+    font-size: 1.3em;
+    color: #667eea;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.event-details p {
+    font-weight: 600;
+}
+
+.event-description-area {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+}
+
+.event-description-area p {
+    font-size: 0.95em;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.event-description-area p:last-child {
+    margin-bottom: 0;
+}
+
+/* Ticket Form */
+.ticket-form {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-form h2 {
+    font-size: 2em;
+    color: #667eea;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.field-helper {
+    font-size: 0.85em;
+    color: #666;
+    margin: 5px 0 8px 0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Ticket */
+.ticket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.ticket {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+.ticket::before,
+.ticket::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ticket::before {
+    left: -15px;
+}
+
+.ticket::after {
+    right: -15px;
+}
+
+.ticket-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    text-align: center;
+}
+
+.ticket-logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.ticket-body {
+    padding: 40px;
+    border-left: 3px dashed #ddd;
+    border-right: 3px dashed #ddd;
+}
+
+.ticket-body h2 {
+    text-align: center;
+    color: #999;
+    font-size: 1.2em;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.event-title {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.ticket-subtitle {
+    text-align: center;
+    font-size: 1.1em;
+    color: #667eea;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+.ticket-description {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #667eea;
+}
+
+.ticket-description p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.ticket-details {
+    margin-bottom: 30px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row .label {
+    font-weight: 700;
+    color: #667eea;
+}
+
+.detail-row .value {
+    font-weight: 600;
+    color: #333;
+}
+
+.barcode-section {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.barcode-number {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: #333;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+.ticket-footer {
+    background: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.print-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.download-btn {
+    background: #2196F3;
+    color: white;
+}
+
+.back-btn {
+    background: #666;
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.success-message {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.success-message h3 {
+    color: #4CAF50;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.success-message p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+
+    .countdown-timer,
+    .notification-container,
+    .button-group,
+    .success-message,
+    .back-btn {
+        display: none !important;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* Single ticket: A6 size, centered */
+    .single-ticket {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 148mm;
+        padding: 0;
+    }
+
+    .single-ticket .ticket {
+        width: 105mm;
+        max-width: 105mm;
+        height: 148mm;
+        box-shadow: none;
+        border: 2px solid #667eea;
+        border-radius: 12px;
+        page-break-inside: avoid;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Multiple tickets: A6 size, grid layout (2 per A4 page) */
+    .multiple-tickets {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5mm;
+        padding: 0;
+        min-height: auto;
+    }
+
+    .multiple-tickets .ticket {
+        box-shadow: none;
+        border: 2px solid #667eea;
+        border-radius: 12px;
+        width: 105mm;
+        max-width: 105mm;
+        height: 148mm;
+        page-break-inside: avoid;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .multiple-tickets .ticket:nth-child(2n) {
+        page-break-after: always;
+    }
+
+    .multiple-tickets .ticket:last-of-type {
+        page-break-after: auto;
+    }
+}
+
+/* Additional print styling */
+@media print {
+    /* Default page setup for A6 tickets */
+    @page {
+        margin: 0;
+    }
+
+    /* Single ticket page - A6 size */
+    @page :first {
+        size: A6 portrait;
+    }
+
+    /* Adjust styling for A6 dimensions */
+    .single-ticket .ticket {
+        height: 148mm;
+        width: 105mm;
+    }
+
+    .multiple-tickets .ticket {
+        height: 148mm;
+        width: 105mm;
+    }
+
+    .ticket-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        padding: 15px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .ticket-logo {
+        max-width: 150px;
+    }
+
+    .ticket-body {
+        flex: 1;
+        padding: 15px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .ticket-body h2 {
+        font-size: 0.9em;
+        margin-bottom: 8px;
+    }
+
+    .event-title {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .ticket-description {
+        background: #f8f9fa !important;
+        border: 1px dashed #667eea !important;
+        padding: 10px;
+        margin: 10px 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .ticket-description p {
+        font-size: 0.75em;
+    }
+
+    .ticket-details {
+        margin-bottom: 15px;
+    }
+
+    .detail-row {
+        padding: 5px 0;
+        font-size: 0.8em;
+    }
+
+    .barcode-section {
+        margin-top: 10px;
+    }
+
+    .barcode-section svg {
+        max-width: 100%;
+        height: 40px;
+    }
+
+    .barcode-number {
+        font-size: 0.7em;
+    }
+
+    .ticket-footer {
+        padding: 8px 15px;
+        font-size: 0.65em;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .countdown-timer {
+        top: 10px;
+        right: 10px;
+        padding: 10px 15px;
+    }
+
+    .timer-label {
+        font-size: 0.65em;
+    }
+
+    .timer-display {
+        font-size: 1.5em;
+    }
+
+    .notification-container {
+        bottom: 10px;
+        left: 10px;
+        max-width: calc(100% - 20px);
+    }
+
+    .ticket-notification {
+        padding: 12px 15px;
+        min-width: 200px;
+    }
+
+    .event-info h1 {
+        font-size: 1.8em;
+    }
+
+    .ticket-form {
+        padding: 20px;
+    }
+
+    .ticket-container {
+        padding: 20px 10px;
+        gap: 30px;
+    }
+
+    .ticket {
+        max-width: 100%;
+    }
+
+    .ticket-body {
+        padding: 20px;
+    }
+
+    .event-title {
+        font-size: 1.5em;
+    }
+
+    .ticket-description {
+        padding: 12px 15px;
+        margin: 15px 0;
+    }
+
+    .ticket-description p {
+        font-size: 0.85em;
+    }
+
+    .button-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}
