@@ -383,22 +383,12 @@ async function downloadTicket() {
             console.log('Generating image for ticket', i + 1);
             console.log('Ticket dimensions:', ticket.offsetWidth, 'x', ticket.offsetHeight);
 
-            // Get scroll position to ensure proper capture
-            const scrollX = window.scrollX || window.pageXOffset;
-            const scrollY = window.scrollY || window.pageYOffset;
-
             const canvas = await html2canvas(ticket, {
                 scale: 3,
                 backgroundColor: '#ffffff',
                 useCORS: true,
                 allowTaint: false,
                 logging: false,
-                scrollX: -scrollX,
-                scrollY: -scrollY,
-                width: ticket.offsetWidth,
-                height: ticket.offsetHeight,
-                windowWidth: ticket.offsetWidth,
-                windowHeight: ticket.offsetHeight,
                 onclone: function(clonedDoc) {
                     // Ensure the cloned ticket is visible and properly styled
                     const clonedTicket = clonedDoc.getElementById(ticket.id);
@@ -406,15 +396,15 @@ async function downloadTicket() {
                         clonedTicket.style.display = 'flex';
                         clonedTicket.style.flexDirection = 'column';
                         clonedTicket.style.visibility = 'visible';
-                        clonedTicket.style.position = 'relative';
+                        clonedTicket.style.position = 'absolute';
+                        clonedTicket.style.top = '0';
+                        clonedTicket.style.left = '0';
                         clonedTicket.style.opacity = '1';
                         clonedTicket.style.backgroundColor = '#ffffff';
                         clonedTicket.style.margin = '0';
                         clonedTicket.style.padding = '0';
                         clonedTicket.style.boxSizing = 'border-box';
-                        clonedTicket.style.overflow = 'visible';
-                        clonedTicket.style.width = ticket.offsetWidth + 'px';
-                        clonedTicket.style.height = ticket.offsetHeight + 'px';
+                        clonedTicket.style.overflow = 'hidden';
 
                         // Ensure all images are loaded
                         const imgs = clonedTicket.querySelectorAll('img');

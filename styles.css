@@ -757,6 +757,10 @@ body {
         padding: 20px;
     }
 
+    .detail-row .value {
+        text-align: right;
+    }
+
     .event-title {
         font-size: 1.5em;
     }
