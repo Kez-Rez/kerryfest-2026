@@ -190,11 +190,13 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 }
 
 .event-info h1 {
+    font-family: 'Playfair Display', serif;
     font-size: 2.5em;
     color: #333;
     margin-bottom: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     letter-spacing: 2px;
+    font-weight: 800;
 }
 
 .subtitle-name {
@@ -773,6 +775,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 
     /* Make h1 the LARGEST text on the page */
     .event-info h1 {
+        font-family: 'Playfair Display', serif !important;
         font-size: 3.2em !important;
         line-height: 1.2 !important;
         margin-bottom: 40px !important;
@@ -781,6 +784,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
         hyphens: none !important;
         white-space: normal !important;
         font-weight: 800 !important;
+        text-transform: capitalize !important;
     }
 
     .event-info h1 sup {
