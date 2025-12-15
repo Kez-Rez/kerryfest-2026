@@ -803,6 +803,19 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 
     .event-details p {
         margin-bottom: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+    }
+
+    .detail-label {
+        white-space: nowrap;
+        margin-right: 0.3em;
+    }
+
+    .detail-value {
+        display: inline;
+        word-break: break-word;
     }
 
     .event-description-area {
