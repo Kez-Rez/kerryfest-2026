@@ -711,7 +711,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 }
 
 /* Responsive - Make everything 40%+ LARGER on mobile */
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
     body {
         padding: 15px !important;
         overflow-x: hidden !important;
