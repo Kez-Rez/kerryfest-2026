@@ -361,12 +361,24 @@ function createTicketElement(data, index, total, numberOfGuests) {
     return ticketDiv;
 }
 
+// Check if user is in Facebook/Instagram in-app browser
+function isInAppBrowser() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    return (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1) || (ua.indexOf('Instagram') > -1);
+}
+
 // Download ticket as image
 async function downloadTicket() {
     const tickets = document.querySelectorAll('.ticket');
 
     if (tickets.length === 0) {
         alert('No tickets found to download.');
+        return;
+    }
+
+    // Check if in Facebook/Instagram browser
+    if (isInAppBrowser()) {
+        alert('📱 Download not available in Facebook/Instagram browser.\n\nPlease tap the menu (⋯) and select "Open in Browser" or "Open in Safari/Chrome" to download your ticket.\n\nAlternatively, use the PRINT button to save as PDF.');
         return;
     }
 
