@@ -447,6 +447,19 @@ body {
     font-size: 0.9em;
 }
 
+/* Page Footer */
+.page-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85em;
+}
+
+.page-footer p {
+    margin: 0;
+}
+
 /* Buttons */
 .button-group {
     display: flex;
@@ -520,7 +533,8 @@ body {
     .notification-container,
     .button-group,
     .success-message,
-    .back-btn {
+    .back-btn,
+    .page-footer {
         display: none !important;
     }
 

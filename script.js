@@ -2,6 +2,20 @@
 // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTAzFCzvVw1AKo1RBupfsYRo5rFJAWNmwKPKxq0W5SFUcBl_bPWlxab7uiZTp2ODIu/exec';
 
+// Get current time in Brisbane timezone
+function getBrisbaneTime() {
+    return new Date().toLocaleString('en-AU', {
+        timeZone: 'Australia/Brisbane',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    });
+}
+
 // Final closing date - Sunday, February 15, 2026
 const FINAL_CLOSE_DATE = new Date('2026-02-15T23:59:59');
 
@@ -152,6 +166,13 @@ function showRandomNotification() {
 window.addEventListener('DOMContentLoaded', () => {
     startCountdown();
     startNotifications();
+
+    // Set last updated time
+    const lastUpdatedElement = document.getElementById('lastUpdated');
+    if (lastUpdatedElement) {
+        // Set to the deployment/last update time
+        lastUpdatedElement.textContent = '15/12/2024, 13:15:00';
+    }
 });
 
 // Form submission handler
@@ -175,7 +196,7 @@ document.getElementById('ticketForm').addEventListener('submit', async function(
         team: document.getElementById('team').value,
         guests: document.getElementById('guests').value,
         dietaryReqs: document.getElementById('dietaryReqs').value,
-        timestamp: new Date().toISOString()
+        timestamp: getBrisbaneTime()
     };
 
     try {
