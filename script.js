@@ -343,7 +343,7 @@ function createTicketElement(data, index, total, numberOfGuests) {
         </div>
 
         <div class="ticket-footer">
-            <p>Present this ticket at the door • Non-transferable • Crafty Fun </p>
+            <p>Stick me on your fridge • Non-transferable • Crafty Fun </p>
         </div>
     `;
 
