@@ -712,17 +712,40 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 
 /* Responsive - Make everything 40%+ LARGER on mobile */
 @media (max-width: 768px) {
+    /* Add visual indicator for 3 seconds */
+    body::after {
+        content: "📱 MOBILE STYLES ACTIVE";
+        position: fixed;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 0, 0, 0.9);
+        color: white;
+        padding: 15px 25px;
+        font-size: 18px;
+        z-index: 99999;
+        border-radius: 8px;
+        font-weight: bold;
+        animation: fadeOutMobileIndicator 4s forwards;
+    }
+
+    @keyframes fadeOutMobileIndicator {
+        0% { opacity: 1; }
+        75% { opacity: 1; }
+        100% { opacity: 0; display: none; }
+    }
+
     body {
-        padding: 15px;
-        overflow-x: hidden;
-        font-size: 1.2em; /* Base 20% larger */
+        padding: 15px !important;
+        overflow-x: hidden !important;
+        font-size: 1.2em !important; /* Base 20% larger */
     }
 
     .container {
-        max-width: 100%;
-        width: 100%;
-        padding: 0;
-        margin: 0;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     .header {
@@ -773,9 +796,9 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 
     /* Desktop h1 is 2.5em, make it 3.5em (40% larger) */
     .event-info h1 {
-        font-size: 3.5em;
-        line-height: 1.2;
-        margin-bottom: 30px;
+        font-size: 3.5em !important;
+        line-height: 1.2 !important;
+        margin-bottom: 30px !important;
     }
 
     /* Desktop subtitle is 1.3em, make it 1.8em (40% larger) */
