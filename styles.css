@@ -4,11 +4,29 @@
     box-sizing: border-box;
 }
 
+/* Ensure no element exceeds viewport width */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
+}
+
+/* Global image handling */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure text wraps properly */
+p, h1, h2, h3, h4, h5, h6, label, span, div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* Countdown Timer */
@@ -158,6 +176,7 @@ body {
     max-width: 400px;
     width: 100%;
     height: auto;
+    object-fit: contain;
 }
 
 /* Event Info */
@@ -352,6 +371,7 @@ body {
     border-radius: 10px;
     display: block;
     margin: 0 auto;
+    object-fit: contain;
 }
 
 .ticket-body {
@@ -717,6 +737,8 @@ body {
     .logo {
         max-width: 100%;
         max-height: 80px;
+        width: auto;
+        object-fit: contain;
     }
 
     .countdown-timer {
