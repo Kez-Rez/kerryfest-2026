@@ -4,16 +4,31 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTAzFCzvVw1A
 
 // Get current time in Brisbane timezone
 function getBrisbaneTime() {
-    return new Date().toLocaleString('en-AU', {
-        timeZone: 'Australia/Brisbane',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    });
+    try {
+        const now = new Date();
+        const brisbaneTime = now.toLocaleString('en-AU', {
+            timeZone: 'Australia/Brisbane',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        return brisbaneTime;
+    } catch (error) {
+        console.error('Error getting Brisbane time:', error);
+        // Fallback to local time
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+    }
 }
 
 // Final closing date - Sunday, February 15, 2026
@@ -170,7 +185,9 @@ window.addEventListener('DOMContentLoaded', () => {
     // Set last updated time to current Brisbane time
     const lastUpdatedElement = document.getElementById('lastUpdated');
     if (lastUpdatedElement) {
-        lastUpdatedElement.textContent = getBrisbaneTime();
+        const timeString = getBrisbaneTime();
+        console.log('Setting last updated time:', timeString);
+        lastUpdatedElement.textContent = timeString || 'Loading...';
     }
 });
 
