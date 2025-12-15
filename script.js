@@ -214,6 +214,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (lastUpdatedElement) {
         fetchLastCommitInfo();
     }
+
+    // Detect Facebook/Instagram browser and add class
+    if (isInAppBrowser()) {
+        document.body.classList.add('fb-browser');
+    }
 });
 
 // Form submission handler

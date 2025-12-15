@@ -967,3 +967,126 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
         line-height: 1.7;
     }
 }
+
+/* Facebook/Instagram Browser Specific Overrides */
+@media (max-width: 1280px) {
+    body.fb-browser {
+        font-size: 1.15em !important;
+    }
+
+    body.fb-browser .header {
+        padding: 40px 30px;
+        margin: 0 12px 30px 12px;
+    }
+
+    body.fb-browser .event-info {
+        padding: 50px 30px;
+        margin: 0 12px 30px 12px;
+        min-height: 400px;
+    }
+
+    body.fb-browser .logo {
+        max-height: 200px;
+        margin-bottom: 20px;
+    }
+
+    body.fb-browser .event-info h1 {
+        font-size: 2.4em !important;
+        margin-bottom: 30px !important;
+        letter-spacing: 2px !important;
+    }
+
+    body.fb-browser .subtitle-name {
+        font-size: 1.7em;
+        margin-bottom: 25px;
+    }
+
+    body.fb-browser .event-details {
+        font-size: 1.4em;
+    }
+
+    body.fb-browser .event-details p {
+        margin-bottom: 20px;
+    }
+
+    body.fb-browser .event-description-area {
+        margin-top: 35px;
+        padding-top: 30px;
+    }
+
+    body.fb-browser .event-description-area p {
+        font-size: 1.25em;
+        margin-bottom: 22px;
+    }
+
+    body.fb-browser .ticket-form {
+        padding: 45px 30px;
+        margin: 0 12px 30px 12px;
+        min-height: 400px;
+    }
+
+    body.fb-browser .ticket-form h2 {
+        font-size: 1.9em;
+        margin-bottom: 22px;
+    }
+
+    body.fb-browser .subtitle {
+        font-size: 1.25em;
+        margin-bottom: 30px;
+    }
+
+    body.fb-browser .field-helper {
+        font-size: 1.15em;
+        margin: 10px 0 15px 0;
+    }
+
+    body.fb-browser .form-group {
+        margin-bottom: 35px;
+    }
+
+    body.fb-browser .form-group input,
+    body.fb-browser .form-group select,
+    body.fb-browser .form-group textarea {
+        font-size: 20px;
+        padding: 22px;
+        min-height: 65px;
+    }
+
+    body.fb-browser .form-group textarea {
+        min-height: 160px;
+    }
+
+    body.fb-browser .form-group label {
+        font-size: 1.35em;
+        margin-bottom: 12px;
+    }
+
+    body.fb-browser .submit-btn {
+        font-size: 1.45em;
+        padding: 22px 45px;
+        min-height: 70px;
+        margin-top: 22px;
+    }
+
+    body.fb-browser .ticket-container {
+        padding: 45px 30px;
+        margin: 0 12px 30px 12px;
+        gap: 30px;
+    }
+
+    body.fb-browser .success-message {
+        padding: 45px 30px;
+        margin: 0 12px 30px 12px;
+        min-height: 300px;
+    }
+
+    body.fb-browser .success-message h3 {
+        font-size: 1.7em;
+        margin-bottom: 22px;
+    }
+
+    body.fb-browser .success-message p {
+        font-size: 1.35em;
+        margin-bottom: 20px;
+    }
+}
