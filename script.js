@@ -167,11 +167,10 @@ window.addEventListener('DOMContentLoaded', () => {
     startCountdown();
     startNotifications();
 
-    // Set last updated time
+    // Set last updated time to current Brisbane time
     const lastUpdatedElement = document.getElementById('lastUpdated');
     if (lastUpdatedElement) {
-        // Set to the deployment/last update time
-        lastUpdatedElement.textContent = '15/12/2024, 13:15:00';
+        lastUpdatedElement.textContent = getBrisbaneTime();
     }
 });
 
