@@ -177,17 +177,42 @@ function showRandomNotification() {
     showTicketNotification(randomBuyerName);
 }
 
+// Fetch last commit info from GitHub
+async function fetchLastCommitInfo() {
+    const lastUpdatedElement = document.getElementById('lastUpdated');
+    try {
+        const response = await fetch('https://api.github.com/repos/Kez-Rez/kerryfest-2026/commits/main');
+        const data = await response.json();
+
+        const commitDate = new Date(data.commit.author.date);
+        const brisbaneDate = commitDate.toLocaleString('en-AU', {
+            timeZone: 'Australia/Brisbane',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+
+        const commitHash = data.sha.substring(0, 7);
+        lastUpdatedElement.textContent = `${brisbaneDate} (${commitHash})`;
+    } catch (error) {
+        console.error('Error fetching commit info:', error);
+        lastUpdatedElement.textContent = 'Unable to fetch update time';
+    }
+}
+
 // Start countdown and notifications when page loads
 window.addEventListener('DOMContentLoaded', () => {
     startCountdown();
     startNotifications();
 
-    // Set last updated time to current Brisbane time
+    // Set last updated time from latest GitHub commit
     const lastUpdatedElement = document.getElementById('lastUpdated');
     if (lastUpdatedElement) {
-        const timeString = getBrisbaneTime();
-        console.log('Setting last updated time:', timeString);
-        lastUpdatedElement.textContent = timeString || 'Loading...';
+        fetchLastCommitInfo();
     }
 });
 
