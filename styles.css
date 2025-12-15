@@ -711,30 +711,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 }
 
 /* Responsive - Make everything 40%+ LARGER on mobile */
-@media (max-width: 768px) {
-    /* Add visual indicator for 3 seconds */
-    body::after {
-        content: "📱 MOBILE STYLES ACTIVE";
-        position: fixed;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(255, 0, 0, 0.9);
-        color: white;
-        padding: 15px 25px;
-        font-size: 18px;
-        z-index: 99999;
-        border-radius: 8px;
-        font-weight: bold;
-        animation: fadeOutMobileIndicator 4s forwards;
-    }
-
-    @keyframes fadeOutMobileIndicator {
-        0% { opacity: 1; }
-        75% { opacity: 1; }
-        100% { opacity: 0; display: none; }
-    }
-
+@media (max-width: 1024px) {
     body {
         padding: 15px !important;
         overflow-x: hidden !important;
@@ -794,9 +771,9 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
         font-size: 1.1em;
     }
 
-    /* Desktop h1 is 2.5em, make it 3.5em (40% larger) */
+    /* Desktop h1 is 2.5em, make it 2em (20% smaller) */
     .event-info h1 {
-        font-size: 3.5em !important;
+        font-size: 2em !important;
         line-height: 1.2 !important;
         margin-bottom: 30px !important;
     }
