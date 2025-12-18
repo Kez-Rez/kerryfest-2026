@@ -332,7 +332,6 @@ function generateTicket(data) {
     buttonGroup.className = 'button-group';
     buttonGroup.innerHTML = `
         <button onclick="window.print()" class="action-btn print-btn">🖨️ PRINT TICKETS</button>
-        <button onclick="downloadTicket()" class="action-btn download-btn">💾 DOWNLOAD</button>
         <button onclick="addToCalendar()" class="action-btn calendar-btn">📅 ADD TO CALENDAR</button>
     `;
     ticketContainer.appendChild(buttonGroup);
@@ -432,6 +431,12 @@ function createTicketElement(data, index, total, numberOfGuests) {
 function isInAppBrowser() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     return (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1) || (ua.indexOf('Instagram') > -1);
+}
+
+// Check if user is on iOS
+function isIOS() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
 
 // Download ticket as image
@@ -534,7 +539,24 @@ function addToCalendar() {
     const startDate = '20260214T130000';
     const endDate = '20260214T200000';
 
-    // Create .ics file content
+    // For iOS devices, use Google Calendar link as it works more reliably
+    if (isIOS()) {
+        // Google Calendar URL format
+        const googleCalendarUrl = createGoogleCalendarUrl(eventTitle, eventDescription, eventLocation, startDate, endDate);
+
+        // Try to open in new window/tab
+        const opened = window.open(googleCalendarUrl, '_blank');
+
+        if (!opened) {
+            // If popup blocked, show instructions
+            if (confirm('📅 Add to Calendar\n\nFor iPhone/iPad, this will open Google Calendar.\n\nAlternatively, you can:\n• Screenshot this page and add manually to your calendar\n• Use the event details: Saturday Feb 14, 2026, 1pm-8pm\n\nPress OK to open Google Calendar, or Cancel to stay here.')) {
+                window.location.href = googleCalendarUrl;
+            }
+        }
+        return;
+    }
+
+    // For desktop and Android, use .ics file download
     const icsContent = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
@@ -566,6 +588,25 @@ function addToCalendar() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
+}
+
+// Create Google Calendar URL
+function createGoogleCalendarUrl(title, description, location, startDate, endDate) {
+    // Convert from YYYYMMDDTHHMMSS to YYYYMMDDTHHMMSSZ format
+    const start = startDate.replace(/[-:]/g, '') + 'Z';
+    const end = endDate.replace(/[-:]/g, '') + 'Z';
+
+    const baseUrl = 'https://calendar.google.com/calendar/render';
+    const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: title,
+        dates: `${start}/${end}`,
+        details: description,
+        location: location,
+        ctz: 'Australia/Brisbane'
+    });
+
+    return `${baseUrl}?${params.toString()}`;
 }
 
 // Reset form and go back
