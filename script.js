@@ -206,16 +206,23 @@ async function fetchLastCommitInfo() {
 
 // Show banner for Facebook/Instagram browser users
 function showInAppBrowserBanner() {
-    const banner = document.createElement('div');
-    banner.className = 'fb-browser-banner';
-    banner.innerHTML = `
-        <div class="fb-banner-content">
-            <span class="fb-banner-icon">ℹ️</span>
-            <span class="fb-banner-text">For the best experience, open this page in your regular browser</span>
-            <button class="fb-banner-btn" onclick="copyPageURL()">Copy URL</button>
-        </div>
-    `;
-    document.body.insertBefore(banner, document.body.firstChild);
+    try {
+        console.log('Creating banner...');
+        const banner = document.createElement('div');
+        banner.className = 'fb-browser-banner';
+        banner.innerHTML = `
+            <div class="fb-banner-content">
+                <span class="fb-banner-icon">ℹ️</span>
+                <span class="fb-banner-text">For the best experience, open this page in your regular browser</span>
+                <button class="fb-banner-btn" onclick="copyPageURL()">Copy URL</button>
+            </div>
+        `;
+        console.log('Inserting banner into page...');
+        document.body.insertBefore(banner, document.body.firstChild);
+        console.log('✅ Banner inserted successfully');
+    } catch (error) {
+        console.error('❌ Error showing banner:', error);
+    }
 }
 
 // Copy page URL to clipboard
@@ -246,10 +253,19 @@ window.addEventListener('DOMContentLoaded', () => {
         fetchLastCommitInfo();
     }
 
+    // Debug: Log detection results
+    console.log('=== Browser Detection ===');
+    console.log('User Agent:', navigator.userAgent);
+    console.log('Is in-app browser:', isInAppBrowser());
+    console.log('Is iOS:', isIOS());
+
     // Detect Facebook/Instagram browser and add class + show banner
     if (isInAppBrowser()) {
+        console.log('✅ Facebook/Instagram browser detected - showing banner');
         document.body.classList.add('fb-browser');
         showInAppBrowserBanner();
+    } else {
+        console.log('❌ Not a Facebook/Instagram browser');
     }
 });
 
