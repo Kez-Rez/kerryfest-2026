@@ -331,7 +331,7 @@ function generateTicket(data) {
     const buttonGroup = document.createElement('div');
     buttonGroup.className = 'button-group';
     buttonGroup.innerHTML = `
-        <button onclick="window.print()" class="action-btn print-btn">🖨️ PRINT TICKETS</button>
+        <button onclick="printTickets()" class="action-btn print-btn">🖨️ PRINT TICKETS</button>
         <button onclick="addToCalendar()" class="action-btn calendar-btn">📅 ADD TO CALENDAR</button>
     `;
     ticketContainer.appendChild(buttonGroup);
@@ -437,6 +437,18 @@ function isInAppBrowser() {
 function isIOS() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+// Print tickets with Facebook/Instagram browser detection
+function printTickets() {
+    // Check if in Facebook/Instagram browser
+    if (isInAppBrowser()) {
+        alert('🖨️ Print not available in Facebook/Instagram browser.\n\nPlease tap the menu (⋯) and select "Open in Browser" or "Open in Safari/Chrome" to print your tickets.');
+        return;
+    }
+
+    // Normal print for other browsers
+    window.print();
 }
 
 // Add event to calendar
