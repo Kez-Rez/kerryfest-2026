@@ -430,7 +430,14 @@ function createTicketElement(data, index, total, numberOfGuests) {
 // Check if user is in Facebook/Instagram in-app browser
 function isInAppBrowser() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
-    return (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1) || (ua.indexOf('Instagram') > -1);
+    // Check for Facebook app
+    const isFacebook = (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1) || (ua.indexOf('FB_IAB') > -1) || (ua.indexOf('FB4A') > -1);
+    // Check for Instagram app
+    const isInstagram = (ua.indexOf('Instagram') > -1);
+    // Check for generic in-app indicators
+    const isInApp = (ua.indexOf('FB_IAB') > -1) || (ua.indexOf('FBIOS') > -1);
+
+    return isFacebook || isInstagram || isInApp;
 }
 
 // Check if user is on iOS
@@ -441,13 +448,19 @@ function isIOS() {
 
 // Print tickets with Facebook/Instagram browser detection
 function printTickets() {
+    console.log('printTickets called');
+    console.log('User Agent:', navigator.userAgent);
+    console.log('Is in-app browser:', isInAppBrowser());
+
     // Check if in Facebook/Instagram browser
     if (isInAppBrowser()) {
+        console.log('Showing in-app browser alert');
         alert('🖨️ Print not available in Facebook/Instagram browser.\n\nPlease tap the menu (⋯) and select "Open in Browser" or "Open in Safari/Chrome" to print your tickets.');
         return;
     }
 
     // Normal print for other browsers
+    console.log('Opening print dialog');
     window.print();
 }
 
