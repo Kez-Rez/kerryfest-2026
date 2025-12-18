@@ -549,6 +549,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
         background: white;
         padding: 0;
         margin: 0;
+        overflow: hidden;
     }
 
     .countdown-timer,
@@ -563,6 +564,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
     .container {
         max-width: 100%;
         margin: 0;
+        padding: 0;
     }
 
     /* Single ticket: A6 size, centered */
@@ -571,20 +573,26 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
         justify-content: center;
         align-items: center;
         min-height: 148mm;
+        max-height: 148mm;
         padding: 0;
+        margin: 0;
+        overflow: hidden;
     }
 
     .single-ticket .ticket {
         width: 105mm;
         max-width: 105mm;
         height: 148mm;
+        max-height: 148mm;
         box-shadow: none;
         border: 2px solid #667eea;
         border-radius: 12px;
         page-break-inside: avoid;
+        page-break-after: avoid;
         margin: 0;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     /* Multiple tickets: A6 size, grid layout (2 per A4 page) */
@@ -622,12 +630,8 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 @media print {
     /* Default page setup for A6 tickets */
     @page {
-        margin: 0;
-    }
-
-    /* Single ticket page - A6 size */
-    @page :first {
         size: A6 portrait;
+        margin: 0;
     }
 
     /* Adjust styling for A6 dimensions */
