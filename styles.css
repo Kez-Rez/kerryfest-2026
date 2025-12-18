@@ -505,11 +505,6 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
     color: white;
 }
 
-.download-btn {
-    background: #2196F3;
-    color: white;
-}
-
 .calendar-btn {
     background: #FF9800;
     color: white;
@@ -722,7 +717,7 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
     body {
         padding: 20px !important;
         overflow-x: hidden !important;
-        font-size: 1em !important; /* Standard base size for mobile */
+        font-size: 0.85em !important; /* Reduced base size for mobile */
     }
 
     .container {
@@ -733,14 +728,14 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
     }
 
     .header {
-        padding: 40px 30px;
-        margin: 0 12px 30px 12px;
+        padding: 30px 25px;
+        margin: 0 10px 25px 10px;
     }
 
     .event-info {
-        padding: 50px 30px;
-        margin: 0 12px 30px 12px;
-        min-height: 400px;
+        padding: 35px 25px;
+        margin: 0 10px 25px 10px;
+        min-height: 350px;
     }
 
     .logo {
@@ -781,16 +776,16 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
     /* Make h1 the LARGEST text on the page */
     .event-info h1 {
         font-family: 'Arial', sans-serif !important;
-        font-size: 2.4em !important;
+        font-size: 2em !important;
         line-height: 1.2 !important;
-        margin-bottom: 30px !important;
+        margin-bottom: 25px !important;
         word-break: keep-all !important;
         overflow-wrap: normal !important;
         hyphens: none !important;
         white-space: normal !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 2px !important;
+        letter-spacing: 1.5px !important;
         color: #667eea !important;
     }
 
@@ -801,15 +796,15 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 
     /* Desktop subtitle is 1.3em, make it larger */
     .subtitle-name {
-        font-size: 1.7em;
-        margin-bottom: 25px;
+        font-size: 1.4em;
+        margin-bottom: 20px;
         line-height: 1.4;
     }
 
     /* Desktop details - center aligned */
     .event-details {
-        font-size: 1.4em;
-        line-height: 1.7;
+        font-size: 1.2em;
+        line-height: 1.6;
         text-align: center !important;
     }
 
@@ -838,73 +833,73 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
 
     /* Desktop description */
     .event-description-area p {
-        font-size: 1.25em;
-        line-height: 1.7;
-        margin-bottom: 22px;
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 18px;
     }
 
     .ticket-form {
-        padding: 45px 30px;
-        margin: 0 12px 30px 12px;
-        min-height: 400px;
+        padding: 35px 25px;
+        margin: 0 10px 25px 10px;
+        min-height: 300px;
     }
 
     /* Desktop form h2 */
     .ticket-form h2 {
-        font-size: 1.9em;
-        margin-bottom: 22px;
+        font-size: 1.6em;
+        margin-bottom: 18px;
         font-weight: 700;
     }
 
     .subtitle {
-        font-size: 1.25em;
-        margin-bottom: 30px;
-        line-height: 1.6;
+        font-size: 1.1em;
+        margin-bottom: 25px;
+        line-height: 1.5;
     }
 
     .field-helper {
-        font-size: 1.15em;
-        line-height: 1.5;
-        margin: 10px 0 15px 0;
+        font-size: 1em;
+        line-height: 1.4;
+        margin: 8px 0 12px 0;
     }
 
     /* Make form inputs more thumb-friendly */
     .form-group {
-        margin-bottom: 35px;
+        margin-bottom: 28px;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-        font-size: 20px;
-        padding: 22px;
-        min-height: 65px;
+        font-size: 18px;
+        padding: 18px;
+        min-height: 55px;
     }
 
     .form-group textarea {
-        min-height: 160px;
-        line-height: 1.6;
+        min-height: 140px;
+        line-height: 1.5;
     }
 
     .form-group label {
-        font-size: 1.35em;
-        margin-bottom: 12px;
+        font-size: 1.2em;
+        margin-bottom: 10px;
         font-weight: 700;
     }
 
     /* Make submit button thumb-friendly */
     .submit-btn {
-        font-size: 1.45em;
-        padding: 22px 45px;
-        min-height: 70px;
-        margin-top: 22px;
+        font-size: 1.3em;
+        padding: 18px 35px;
+        min-height: 60px;
+        margin-top: 18px;
         font-weight: 700;
     }
 
     .ticket-container {
-        padding: 45px 30px;
-        margin: 0 12px 30px 12px;
-        gap: 30px;
+        padding: 35px 25px;
+        margin: 0 10px 25px 10px;
+        gap: 25px;
     }
 
     .ticket {
@@ -947,29 +942,29 @@ p, h1, h2, h3, h4, h5, h6, label, span, div {
     }
 
     .success-message {
-        padding: 45px 30px;
-        margin: 0 12px 30px 12px;
-        min-height: 300px;
+        padding: 30px 25px;
+        margin: 0 10px 25px 10px;
+        min-height: 220px;
     }
 
     .success-message h3 {
-        font-size: 1.7em;
-        margin-bottom: 22px;
+        font-size: 1.5em;
+        margin-bottom: 18px;
         line-height: 1.3;
         font-weight: 700;
     }
 
     .success-message p {
-        font-size: 1.35em;
-        line-height: 1.7;
-        margin-bottom: 20px;
+        font-size: 1.15em;
+        line-height: 1.6;
+        margin-bottom: 16px;
     }
 
     .page-footer {
-        padding: 35px 20px;
-        margin-top: 60px;
-        font-size: 1.2em;
-        line-height: 1.7;
+        padding: 30px 20px;
+        margin-top: 50px;
+        font-size: 1em;
+        line-height: 1.5;
     }
 }
 
