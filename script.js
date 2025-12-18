@@ -204,6 +204,37 @@ async function fetchLastCommitInfo() {
     }
 }
 
+// Show banner for Facebook/Instagram browser users
+function showInAppBrowserBanner() {
+    const banner = document.createElement('div');
+    banner.className = 'fb-browser-banner';
+    banner.innerHTML = `
+        <div class="fb-banner-content">
+            <span class="fb-banner-icon">ℹ️</span>
+            <span class="fb-banner-text">For the best experience, open this page in your regular browser</span>
+            <button class="fb-banner-btn" onclick="copyPageURL()">Copy URL</button>
+        </div>
+    `;
+    document.body.insertBefore(banner, document.body.firstChild);
+}
+
+// Copy page URL to clipboard
+function copyPageURL() {
+    const url = window.location.href;
+    const isIOSDevice = isIOS();
+    const browserName = isIOSDevice ? 'Safari' : 'Chrome';
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+            alert('✅ URL copied!\n\nNow:\n1. Open ' + browserName + '\n2. Paste and go to this URL\n3. You\'ll be able to print your tickets!');
+        }).catch(() => {
+            alert('URL:\n' + url + '\n\nCopy this and paste it into ' + browserName);
+        });
+    } else {
+        alert('URL:\n' + url + '\n\nCopy this and paste it into ' + browserName);
+    }
+}
+
 // Start countdown and notifications when page loads
 window.addEventListener('DOMContentLoaded', () => {
     startCountdown();
@@ -215,9 +246,10 @@ window.addEventListener('DOMContentLoaded', () => {
         fetchLastCommitInfo();
     }
 
-    // Detect Facebook/Instagram browser and add class
+    // Detect Facebook/Instagram browser and add class + show banner
     if (isInAppBrowser()) {
         document.body.classList.add('fb-browser');
+        showInAppBrowserBanner();
     }
 });
 
@@ -454,8 +486,29 @@ function printTickets() {
 
     // Check if in Facebook/Instagram browser
     if (isInAppBrowser()) {
-        console.log('Showing in-app browser alert');
-        alert('🖨️ Print not available in Facebook/Instagram browser.\n\nPlease tap the menu (⋯) and select "Open in Browser" or "Open in Safari/Chrome" to print your tickets.');
+        console.log('Showing in-app browser dialog');
+
+        // Create a more helpful message based on platform
+        const isIOSDevice = isIOS();
+        const browserName = isIOSDevice ? 'Safari' : 'Chrome';
+
+        const message = `🖨️ To print your tickets, please open this page in ${browserName}.\n\nTap the menu button (⋯ or •••) at the top or bottom of this screen, then select:\n• "Open in ${browserName}"\n• "Open in Browser"\n• "Open in External Browser"\n\nOnce opened in ${browserName}, you'll be able to print your tickets!`;
+
+        if (confirm(message + '\n\nPress OK to copy the page URL, then paste it into ' + browserName + '.')) {
+            // Try to copy the URL to clipboard
+            const url = window.location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('✅ URL copied to clipboard!\n\nNow:\n1. Open ' + browserName + '\n2. Paste the URL\n3. Press the Print button');
+                }).catch(() => {
+                    // Fallback if clipboard fails
+                    alert('Page URL:\n' + url + '\n\nCopy this and paste it into ' + browserName);
+                });
+            } else {
+                // Fallback for browsers without clipboard API
+                alert('Page URL:\n' + url + '\n\nCopy this and paste it into ' + browserName);
+            }
+        }
         return;
     }
 
