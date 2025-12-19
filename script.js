@@ -260,13 +260,10 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log('Is iOS:', isIOS());
 
     // Detect Facebook/Instagram browser and add class + show banner
-    // TEMPORARY: Always show banner for testing
-    console.log('🧪 TEST MODE: Always showing banner');
-    document.body.classList.add('fb-browser');
-    showInAppBrowserBanner();
-
     if (isInAppBrowser()) {
         console.log('✅ Facebook/Instagram browser detected - showing banner');
+        document.body.classList.add('fb-browser');
+        showInAppBrowserBanner();
     } else {
         console.log('❌ Not a Facebook/Instagram browser');
     }
